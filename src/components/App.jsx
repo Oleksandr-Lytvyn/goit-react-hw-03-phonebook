@@ -40,6 +40,7 @@ export class App extends Component {
         <ContactsList
           contacts={this.state.contacts}
           addFilter={this.addFilter}
+          filter={this.state.filter}
         />
       </>
     );

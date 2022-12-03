@@ -1,4 +1,8 @@
-export function ContactsList({ contacts, addFilter }) {
+export function ContactsList({ contacts, addFilter, filter }) {
+  const filteredContacts = contacts.filter(cont =>
+    cont.name.toLowerCase().includes(filter.toLowerCase())
+  );
+  console.log(filteredContacts);
   return (
     <div>
       <input
@@ -10,7 +14,7 @@ export function ContactsList({ contacts, addFilter }) {
       />
       <h2>Contacts list</h2>
       <ul>
-        {contacts.map(cont => (
+        {filteredContacts.map(cont => (
           <li key={cont.id}>
             {cont.name}: {cont.number}
           </li>
