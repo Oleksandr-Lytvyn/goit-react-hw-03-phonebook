@@ -28,8 +28,8 @@ export function InputForm({ addContact }) {
 }
 
 function onSubmit(event, addCont) {
-  const contactName = event.target.elements[0].value;
-  const contactPhone = event.target.elements[1].value;
-  //   console.log(event.target.elements[1].value);
+  const contactName = event.target.elements.name.value;
+  const contactPhone = event.target.elements.number.value;
+  console.log(event.target.elements.name);
   return addCont(contactName, contactPhone);
 }

@@ -1,6 +1,7 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
-import { ContactsList } from './ContactsList/ContactsList';
+import { ContactForm } from './ContactForm/ContactForm';
 import { InputForm } from './InputForm/InputForm';
 
 export class App extends Component {
@@ -16,7 +17,10 @@ export class App extends Component {
   };
 
   addContact = (newContact, newPhone) => {
-    // console.log(newContact);
+    if (this.state.contacts.find(cont => cont.name === newContact)) {
+      alert(`${newContact} is already`);
+      return;
+    }
     this.setState(prevState => {
       return {
         contacts: [
@@ -31,18 +35,36 @@ export class App extends Component {
       return { filter: input };
     });
   };
-
+  deleteContact = input => {
+    const updatedContacts = this.state.contacts.filter(
+      cont => input.target.id !== cont.id
+    );
+    this.setState(() => {
+      return { contacts: updatedContacts };
+    });
+  };
   render() {
     return (
       <>
         <h1>Phonebook</h1>
         <InputForm addContact={this.addContact} />
-        <ContactsList
+        <ContactForm
           contacts={this.state.contacts}
           addFilter={this.addFilter}
           filter={this.state.filter}
+          deleteContact={this.deleteContact}
         />
       </>
     );
   }
 }
+
+InputForm.propTypes = {
+  addContact: PropTypes.func,
+};
+ContactForm.propTypes = {
+  contacts: PropTypes.array,
+  addFilter: PropTypes.func,
+  filter: PropTypes.string,
+  deleteContact: PropTypes.func,
+};
