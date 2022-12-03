@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { nanoid } from 'nanoid';
 import { ContactsList } from './ContactsList/ContactsList';
 import { InputForm } from './InputForm/InputForm';
 
@@ -11,12 +12,18 @@ export class App extends Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     name: '',
+    filter: '',
   };
 
-  addContact = newContact => {
-    console.log(newContact);
+  addContact = (newContact, newPhone) => {
+    // console.log(newContact);
     this.setState(prevState => {
-      return { contacts: [...prevState.contacts, { name: newContact }] };
+      return {
+        contacts: [
+          ...prevState.contacts,
+          { id: nanoid(), name: newContact, number: newPhone },
+        ],
+      };
     });
   };
 
