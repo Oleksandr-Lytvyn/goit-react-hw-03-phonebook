@@ -26,13 +26,21 @@ export class App extends Component {
       };
     });
   };
+  addFilter = input => {
+    this.setState(() => {
+      return { filter: input };
+    });
+  };
 
   render() {
     return (
       <>
         <h1>Phonebook</h1>
         <InputForm addContact={this.addContact} />
-        <ContactsList contacts={this.state.contacts} />
+        <ContactsList
+          contacts={this.state.contacts}
+          addFilter={this.addFilter}
+        />
       </>
     );
   }

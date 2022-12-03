@@ -1,12 +1,12 @@
-export function ContactsList({ contacts }) {
+export function ContactsList({ contacts, addFilter }) {
   return (
     <div>
       <input
         type="text"
         name="filter"
-        // onInput={event => {
-        //   onTextInput(event);
-        // }}
+        onInput={event => {
+          addFilter(event.target.value);
+        }}
       />
       <h2>Contacts list</h2>
       <ul>
@@ -21,8 +21,5 @@ export function ContactsList({ contacts }) {
 }
 
 // function onTextInput(event) {
-//   console.log(event.target.value);
-//     const searchName = event.target.value;
-//     // const findedNames =
-//   console.log(contacts);
+//   //   console.log(event.target.value);
 // }
