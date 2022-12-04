@@ -45,7 +45,7 @@ export class App extends Component {
   };
   render() {
     return (
-      <>
+      <section>
         <h1>Phonebook</h1>
         <InputForm addContact={this.addContact} />
         <ContactForm
@@ -54,7 +54,7 @@ export class App extends Component {
           filter={this.state.filter}
           deleteContact={this.deleteContact}
         />
-      </>
+      </section>
     );
   }
 }

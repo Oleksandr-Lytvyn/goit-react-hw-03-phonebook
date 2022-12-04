@@ -1,9 +1,11 @@
+import css from './ContactForm.module.css';
+
 export function ContactForm({ contacts, addFilter, filter, deleteContact }) {
   const filteredContacts = contacts.filter(cont =>
     cont.name.toLowerCase().includes(filter.toLowerCase())
   );
   return (
-    <div>
+    <div className={css.contacts_section}>
       <h2>Contacts list</h2>
       <input
         type="text"
@@ -12,14 +14,15 @@ export function ContactForm({ contacts, addFilter, filter, deleteContact }) {
           addFilter(event.target.value);
         }}
       />
-      <ul>
+      <ul className={css.contacts_list}>
         {filteredContacts.map(cont => (
-          <li key={cont.id}>
+          <li key={cont.id} className={css.contacts_item}>
             <span>
               {cont.name}: {cont.number}
             </span>
             <button
               id={cont.id}
+              className={css.btn_contact}
               type="button"
               onClick={submit => {
                 // console.log(submit);
