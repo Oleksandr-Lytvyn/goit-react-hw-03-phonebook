@@ -16,6 +16,19 @@ export class App extends Component {
     filter: '',
   };
 
+  componentDidMount() {
+    console.log(localStorage.getItem('contacts'));
+    this.setState({
+      contacts: JSON.parse(localStorage.getItem('contacts')),
+    });
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+      // console.log(prevState.contacts !== this.state.contacts);
+    }
+  }
+
   addContact = (newContact, newPhone) => {
     if (this.state.contacts.find(cont => cont.name === newContact)) {
       alert(`${newContact} is already`);
