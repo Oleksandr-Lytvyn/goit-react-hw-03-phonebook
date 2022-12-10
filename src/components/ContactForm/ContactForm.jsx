@@ -25,7 +25,6 @@ export function ContactForm({ contacts, addFilter, filter, deleteContact }) {
               className={css.btn_contact}
               type="button"
               onClick={submit => {
-                // console.log(submit);
                 deleteContact(submit);
               }}
             >
@@ -37,7 +36,3 @@ export function ContactForm({ contacts, addFilter, filter, deleteContact }) {
     </div>
   );
 }
-
-// function deleteContact() {
-//   console.log('tic');
-// }
